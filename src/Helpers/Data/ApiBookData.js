@@ -1,12 +1,20 @@
-import React from 'react';
 import axios from 'axios';
 
-var baseUrl = 'https://localhost:44311/api/';
+var baseUrl = 'https://localhost:44311/api';
 
-const getBookByIsbn = () => new Promise((resolve, reject) => {
-    axios.get(`${baseUrl}/goodreadsapi/`)
+const getBookByIsbn = (isbn) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/goodreadsapi/${isbn}`)
         .then((res) => resolve(res.data))
         .catch((err) => reject(err))
 });
 
-export default getBookByIsbn;
+const getBookByTitle = (title) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/goodreadsapi/search/${title}`)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err))
+});
+
+export default {
+    getBookByIsbn,
+    getBookByTitle
+};
