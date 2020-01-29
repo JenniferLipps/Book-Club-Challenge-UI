@@ -1,19 +1,31 @@
 import React from 'react';
+import BookCard from '../BookCard/BookCard';
 import searchGoodReads from '../../Helpers/Data/ApiBookData'
 
 class Home extends React.Component {
 
     state = {
-        query: ''
+        query: '',
+        apiSearchResults: []
     }
 
     handleTitleSearch = (e) => {
         e.preventDefault();
-        const titleResults = searchGoodReads.getBookByTitle(this.state.query);
-        console.error(titleResults);
+        searchGoodReads.getBookByTitle(this.state.query).then((books) => {
+            this.setState({ apiSearchResults: books });
+        }).catch((error) => {
+            console.error("Error getting good reads books by title: ", error);
+        });
     };
 
     render() {
+        const displaySearchResults = this.state.apiSearchResults.map((myBook) => {
+            return <BookCard 
+                title={myBook.title}
+                author={myBook.author}
+                image={myBook.image}
+                />
+        });
         return (
             <div className="Home">
                 <div className="Search-Input">
@@ -27,6 +39,9 @@ class Home extends React.Component {
                     />
                     <button onClick={this.handleTitleSearch}>Search</button>
                     </form>
+                </div>
+                <div className="search-results d-flex flex-wrap">
+                    { displaySearchResults }
                 </div>
             </div>
         );
