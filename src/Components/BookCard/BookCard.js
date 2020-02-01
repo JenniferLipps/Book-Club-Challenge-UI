@@ -1,32 +1,30 @@
 import React from 'react';
-import apiBookShape from '../../Helpers/theProps/BookShape';
+import userBookInfo from '../../Helpers/Data/UserBookData';
 
-const BookCard = (props) => {
-    // static propTypes = {
-    //     apiBook: apiBookShape.apiBookShape,
-    // }
-    const {
-        title,
-        author,
-        imageUrl,
-        goodReadsId
-    } = props.book;
+class BookCard extends React.Component {
 
-    // render() {
-        // const apiBook = this.props;
+    addBooktoDB = () => {
+        var selectedBook = {...this.props.apiBook};
+        selectedBook.userId = this.props.userId;
+        userBookInfo.postBookToDb(selectedBook);
+    };
+
+
+    render() {
+        const apiBook = {...this.props.apiBook};
         return (
-            <div className="bookCard col-4">
+            <div className="bookCard col-4" key={this.props.key}>
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="card-title">{title}</h4>
-                        <h4 className="card-author">{author}</h4>
-                        <div className="card-img"><img src={imageUrl} alt="..." className="img-fluid"/></div>
-                        <button className="btn btn-danger">Add to Book List</button>
+                        <h4 className="card-title">{apiBook.title}</h4>
+                        <h4 className="card-author">{apiBook.author}</h4>
+                        <div className="card-img"><img src={apiBook.imageURL} alt="..." className="img-fluid"/></div>
+                        <button className="btn btn-danger" onClick={this.addBooktoDB}>Add to Book List</button>
                     </div>
                 </div>
             </div>
         );
-    // }
+    }
 
 };
 

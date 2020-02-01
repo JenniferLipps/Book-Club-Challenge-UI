@@ -6,7 +6,7 @@ class Home extends React.Component {
 
     state = {
         query: '',
-        apiSearchResults: []
+        apiSearchResults: [],
     }
 
     handleTitleSearch = (e) => {
@@ -21,9 +21,9 @@ class Home extends React.Component {
     render() {
         const displaySearchResults = this.state.apiSearchResults.map((myBook) => {
             return <BookCard 
-                title={myBook.title}
-                author={myBook.author}
-                image={myBook.image}
+                apiBook={myBook}
+                key={myBook.goodReadsId}
+                userId={1}
                 />
         });
         return (
