@@ -1,12 +1,18 @@
 import React from 'react';
 import BookCard from '../BookCard/BookCard';
-import searchGoodReads from '../../Helpers/Data/ApiBookData'
+import UserBookCard from '../UserBookCard/UserBookCard';
+import ChallengeCard from '../ChallengeCard/ChallengeCard';
+import searchGoodReads from '../../Helpers/Data/ApiBookData';
+import userBooks from '../../Helpers/Data/UserBookData';
+import challenges from '../../Helpers/Data/ChallengeData';
 
 class Home extends React.Component {
 
     state = {
         query: '',
         apiSearchResults: [],
+        userLibrary: [],
+        userChallengeLibrary: []
     }
 
     handleTitleSearch = (e) => {
@@ -18,6 +24,25 @@ class Home extends React.Component {
         });
     };
 
+    getMyLibrary = () => {
+        const userId = 1;
+        userBooks.getUserBooks(userId).then((books) => {this.setState({ userLibrary: books })})
+            .catch(err => console.error("Cannot get user books."))
+    };
+
+    getMyChallenges = () => {
+        const userId = 1;
+        challenges.getChallenges(userId).then((userChallenges) => {
+            console.error(userChallenges);
+            this.setState({ userChallengeLibrary: userChallenges});
+            }).catch(err => console.error("Cannot get challenges."))
+    };
+
+    componentDidMount () {
+        this.getMyLibrary();
+        this.getMyChallenges();
+    };
+
     render() {
         const displaySearchResults = this.state.apiSearchResults.map((myBook) => {
             return <BookCard 
@@ -26,6 +51,22 @@ class Home extends React.Component {
                 userId={1}
                 />
         });
+
+        const displayUsersBooks = this.state.userLibrary.map((book) => {
+            return <UserBookCard
+                mySavedBook={book}
+                key={book.goodReadsId}
+                userId={1}
+                />
+        });
+
+        const displayUsersChallenges = this.state.userChallengeLibrary.map((challenge) => {
+            return <ChallengeCard 
+                myChallenge={challenge}
+                userId={1}
+                />
+        });
+
         return (
             <div className="Home">
                 <div className="Search-Input">
@@ -40,8 +81,16 @@ class Home extends React.Component {
                     <button onClick={this.handleTitleSearch}>Search</button>
                     </form>
                 </div>
-                <div className="search-results d-flex flex-wrap">
+                <div className="search-results d-flex flex-wrap">                    
                     { displaySearchResults }
+                </div>
+                <div>
+                    <h4>Your Completed Books</h4>
+                    { displayUsersBooks }
+                </div>
+                <div>
+                    <h4>Current Challenges</h4>
+                    { displayUsersChallenges }
                 </div>
             </div>
         );
