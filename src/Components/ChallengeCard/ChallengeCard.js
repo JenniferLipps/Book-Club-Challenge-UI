@@ -7,12 +7,12 @@ class ChallengeCard extends React.Component {
         const startDate = moment(myChallenge.startDate).format('MMMM Do YYYY');
         const endDate = moment(myChallenge.endDate).format('MMMM Do YYYY');
         return (
-            <div className="challengeCard col-4" key={this.props.key}>
+            <div className="challengeCard" key={this.props.key}>
                 <div className="card">
                     <div className="card-body">
                         <h4>Challenge # {myChallenge.id}</h4>
-                        <h4 className="challenge-start">{startDate}</h4>
-                        <h4 className="challenge-end">{endDate}</h4>
+                        <h4>{myChallenge.title}</h4>                        
+                        <h4 className="challenge-end">Challenge ends {endDate}</h4>
                     </div>
                 </div>
             </div>

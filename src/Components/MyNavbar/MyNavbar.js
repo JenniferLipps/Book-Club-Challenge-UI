@@ -32,7 +32,7 @@ const MyNavbar = () => {
                                 <NavLink tag={RRNavLink} to='/Library'>Library</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRNavLink} to='/Challenge'>Challenge</NavLink>
+                                <NavLink tag={RRNavLink} to='/Challenge'>Challenges</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink>Logout</NavLink>

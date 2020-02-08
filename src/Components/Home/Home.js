@@ -34,7 +34,7 @@ class Home extends React.Component {
 
     getMyChallenges = () => {
         const userId = 1;
-        challenges.getChallenges(userId).then((userChallenges) => {
+        challenges.getChallengesByUser(userId).then((userChallenges) => {
             console.error(userChallenges);
             this.setState({ userChallengeLibrary: userChallenges});
             }).catch(err => console.error("Cannot get challenges."))
