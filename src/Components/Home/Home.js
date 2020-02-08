@@ -6,6 +6,8 @@ import searchGoodReads from '../../Helpers/Data/ApiBookData';
 import userBooks from '../../Helpers/Data/UserBookData';
 import challenges from '../../Helpers/Data/ChallengeData';
 
+import './Home.scss';
+
 class Home extends React.Component {
 
     state = {
@@ -69,6 +71,13 @@ class Home extends React.Component {
 
         return (
             <div className="Home">
+                <div className="App">
+                    <header className="App-header">
+                        <p>
+                        Book Club Challenge - Home
+                        </p>
+                    </header>
+                </div>
                 <div className="Search-Input">
                     <form>
                     <p>Search by Title</p>
@@ -88,7 +97,7 @@ class Home extends React.Component {
                     <h4>Your Completed Books</h4>
                     { displayUsersBooks }
                 </div>
-                <div>
+                <div className="home-sidebar">
                     <h4>Current Challenges</h4>
                     { displayUsersChallenges }
                 </div>
