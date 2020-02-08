@@ -1,0 +1,12 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    background-color: red($color: #000000);
+  }
+
+.home-sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
