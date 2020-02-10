@@ -10,9 +10,8 @@ class ChallengeCard extends React.Component {
             <div className="challengeCard" key={this.props.key}>
                 <div className="card">
                     <div className="card-body">
-                        <h4>Challenge # {myChallenge.id}</h4>
-                        <h4>{myChallenge.title}</h4>                        
-                        <h4 className="challenge-end">Challenge ends {endDate}</h4>
+                        <h4>Challenge # {myChallenge.challengeId}</h4>                                                
+                        <h4 className="challenge-dates">Challenge starts {startDate} and ends {endDate}</h4>
                     </div>
                 </div>
             </div>
