@@ -10,4 +10,13 @@ const getUserById = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default getUserById;
+const getAllUsers = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}`)
+    .then((res) => resolve(res.data))
+    .catch((err) => reject(err));
+});
+
+export default {
+  getUserById,
+  getAllUsers
+};

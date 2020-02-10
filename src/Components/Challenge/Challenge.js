@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import challenges from '../../Helpers/Data/ChallengeData';
 import ChallengeCard from '../../Components/ChallengeCard/ChallengeCard';
 import './Challenge.scss'
@@ -6,7 +7,8 @@ import './Challenge.scss'
 class Challenge extends React.Component {
     state = {
         userChallengeLibrary: [],
-        allChallenges: []
+        allChallenges: [],
+        newChallenge: []
     }
 
     getMyChallenges = () => {
@@ -24,6 +26,16 @@ class Challenge extends React.Component {
         }).catch(err => console.error("Cannot retrieve challenges."))
     };
 
+    createNewChallenge = (e) => {
+        e.preventDefault();
+        const saveNewChallenge = {...this.state.newChallenge}
+        const userId = 1;
+        saveNewChallenge.creatorId = userId;
+        challenges.addNewChallenge(saveNewChallenge)
+            .then(() => this.props.history.push('/challenge'))
+            .catch(err => console.error('Unable to save Challenge.', err));
+    };
+
     componentDidMount () {
         this.getMyChallenges();
         this.getAllChallenges();
@@ -37,28 +49,32 @@ class Challenge extends React.Component {
                 />
         });
 
+        // const displayAllChallenges = this.state.allChallenges.map((challenge) => {
+        //     return <ChallengeCard
+
+        //     />
+        // });
+
         return (
             <div className="challenges">
-                <div><h4>Current Challenges</h4>
+                <div><h4>My Current Challenges</h4>
                 { displayUsersChallenges }
                 </div>
+
                 <div>
-                <form>
-                    <p>Create a New Challenge</p>
-                    {/* <div className="form-group">
-                    <label htmlFor="title">New Challenge</label>
-                    <input
-                    type="text"
-                    className="form-control"
-                    id="title"
-                    placeholder="New Challenge Title"
-                    value={}
-                    onChange={}
-                    />
-                    </div> */}
+                <Form>
+                    <p>Create a New Challenge</p>                    
+                    <Label For="title">New Challenge</Label>
+                    <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </Input>               
                     <button className="btn btn-warning">Create Challenge</button>
-                </form>
-            </div>
+                </Form>
+                </div>
             </div>
             
         );

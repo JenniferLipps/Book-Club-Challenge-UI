@@ -16,7 +16,10 @@ const getChallengesByChallengeId = challengeId => new Promise((resolve, reject) 
         .catch((err) => reject(err));
 });
 
+const addNewChallenge = newChallenge => axios.post(`${baseUrl}`, newChallenge);
+
 export default {
     getChallengesByUser,
-    getChallengesByChallengeId
+    getChallengesByChallengeId,
+    addNewChallenge
 };
