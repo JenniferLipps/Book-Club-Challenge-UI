@@ -1,14 +1,12 @@
+@import '../Styles/colors';
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  background-color: $gray-highlight;
 }
 
 .App-header {
-  background-color: #282c34;
+  
   min-height: 10vh;
   display: flex;
   flex-direction: column;
