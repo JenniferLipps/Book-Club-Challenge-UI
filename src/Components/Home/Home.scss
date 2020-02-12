@@ -1,11 +1,14 @@
+@import '../../Styles/colors';
+
 .Home {
     display: flex;
     flex-direction: column;
     padding: .5rem;
-    background-color: gray;
+    background-color: $primary-color;
   }
 
 .home-sidebar {
+    background-color: $gray-highlight;
     display: flex;
     flex-direction: column;
     padding: 1rem;

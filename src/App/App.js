@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter,
   Redirect,
@@ -10,6 +10,7 @@ import MyNavbar from '../Components/MyNavbar/MyNavbar';
 import Home from '../Components/Home/Home';
 import Library from '../Components/Library/Library';
 import Challenge from '../Components/Challenge/Challenge';
+import Review from '../Components/Review/Review';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,8 +25,9 @@ function App() {
               <Switch>
                 <Route path='/home' component={Home} />
                 <Route path='/library' component={Library} />
-                {/* <Route path='/library/:id' component={IndividualBook} /> */}
+                <Route path='/library/:id' component={Review} />
                 <Route path='/challenge' component={Challenge} />
+                <Route path='/review' component={Review} />
                 <Redirect from="*" to="/home" />
               </Switch>
             </div>

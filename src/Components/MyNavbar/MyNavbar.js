@@ -7,11 +7,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    // UncontrolledDropdown,
-    // DropdownToggle,
-    // DropdownMenu,
-    // DropdownItem,
-    // NavbarText
   } from 'reactstrap';
   import { NavLink as RRNavLink } from 'react-router-dom';
   import './MyNavbar.scss';
@@ -33,6 +28,9 @@ const MyNavbar = () => {
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={RRNavLink} to='/Challenge'>Challenges</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={RRNavLink} to='/Review'>Reviews</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink>Logout</NavLink>

@@ -28,7 +28,7 @@ class Library extends React.Component {
         return (
             <div>
                     <h4>Your Completed Books</h4>
-                    { displayUsersBooks }
+                    <div className="user-library d-flex flex-wrap">{ displayUsersBooks }</div>
                 </div>
         );
     }

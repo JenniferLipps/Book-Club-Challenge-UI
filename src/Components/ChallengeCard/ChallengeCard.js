@@ -7,11 +7,8 @@ class ChallengeCard extends React.Component {
         const startDate = moment(myChallenge.startDate).format('MMMM Do YYYY');
         const endDate = moment(myChallenge.endDate).format('MMMM Do YYYY');
         
-        // const readersInChallenge = myChallenge.map(r => {
-        //     const readers = Object.keys(r.usersInChallenge).map(key => {
-        //         return `Readers: ${r.firstName} ${r.lastName}`
-        //     })
-        // });
+        const challengeStats = myChallenge.usersInChallenge.map(user => {
+            return `${user.firstName} ${user.lastName} ${user.booksCompleted}`});
 
         return (
             <div className="challengeCard" key={this.props.key}>
@@ -19,8 +16,7 @@ class ChallengeCard extends React.Component {
                     <div className="card-body">
                         <h4>Challenge # {myChallenge.challengeId}</h4>                                                
                         <h4 className="challenge-dates">Challenge starts {startDate} and ends {endDate}</h4>
-                        {/* <p>Readers: {readersInChallenge}</p> */}
-
+                        <div>{ challengeStats } </div>
                     </div>
                 </div>
             </div>

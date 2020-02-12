@@ -1,14 +1,20 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Form, Label, Input } from 'reactstrap';
 import challenges from '../../Helpers/Data/ChallengeData';
 import ChallengeCard from '../../Components/ChallengeCard/ChallengeCard';
+import userData from '../../Helpers/Data/UserInfo';
 import './Challenge.scss'
+
+const defaultChallenge = {
+    userIds: []
+}
 
 class Challenge extends React.Component {
     state = {
         userChallengeLibrary: [],
         allChallenges: [],
-        newChallenge: []
+        newChallenge: defaultChallenge,
+        allUsers: []
     }
 
     getMyChallenges = () => {
@@ -36,9 +42,23 @@ class Challenge extends React.Component {
             .catch(err => console.error('Unable to save Challenge.', err));
     };
 
+    getAllUsers = () => {
+        userData.getAllUsers()
+          .then(allUsers => this.setState({ allUsers }))
+          .catch(err => console.error('Could not get user list', err));
+      }
+
+    selectUsers = (e) => {
+        e.preventDefault();
+        const tempUsers = { ...this.state.newChallenge }
+        tempUsers.userIds.push(e.target.id);
+        this.setState({newChallenge: tempUsers});
+    };
+
     componentDidMount () {
         this.getMyChallenges();
         this.getAllChallenges();
+        this.getAllUsers();
     }
 
     render() {
@@ -49,11 +69,9 @@ class Challenge extends React.Component {
                 />
         });
 
-        // const displayAllChallenges = this.state.allChallenges.map((challenge) => {
-        //     return <ChallengeCard
-
-        //     />
-        // });
+        const createUserMenuOptions = this.state.allUsers.map(challengeUser => (
+            <option id={challengeUser.id} onClick={this.selectUsers}>{challengeUser.firstName} {challengeUser.lastName}</option>
+        ))
 
         return (
             <div className="challenges">
@@ -63,16 +81,12 @@ class Challenge extends React.Component {
 
                 <div>
                 <Form>
-                    <p>Create a New Challenge</p>                    
+                    <h4>Create a New Challenge</h4>                    
                     <Label For="title">New Challenge</Label>
-                    <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <Input type="select" name="selectMulti" multiple>
+                        { createUserMenuOptions }
                     </Input>               
-                    <button className="btn btn-warning">Create Challenge</button>
+                    <button className="btn btn-warning" onClick={this.createNewChallenge}>Create Challenge</button>
                 </Form>
                 </div>
             </div>

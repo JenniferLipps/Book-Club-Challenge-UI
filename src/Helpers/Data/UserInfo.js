@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://localhost:44311/user';
+const baseUrl = 'https://localhost:44311/api/user';
 
 const userId = 1;
 
