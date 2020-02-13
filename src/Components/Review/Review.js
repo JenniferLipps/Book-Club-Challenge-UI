@@ -4,7 +4,7 @@ import BookReviewCard from '../BookReviewCard/BookReviewCard';
 
 class Review extends React.Component {
     state = {
-        myReviewCollection: []
+        myReviewCollection: [],
     };
 
     getMyReviews = () => {
@@ -17,7 +17,7 @@ class Review extends React.Component {
 
     componentDidMount() {
         this.getMyReviews();
-    }
+    };
 
     render() {
         const displayAllUserReviews = this.state.myReviewCollection.map((review) => {
@@ -26,8 +26,11 @@ class Review extends React.Component {
             userId={1}/>
         })
         return (
-            <div>all reviews
-                <div>{ displayAllUserReviews }</div>
+            <div>                
+                <div>
+                    <h4>All My Book Reviews</h4>
+                    <div className="d-flex flex-wrap">{ displayAllUserReviews }</div>
+                </div>
             </div>
         );
     }

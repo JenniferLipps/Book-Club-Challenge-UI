@@ -11,6 +11,7 @@ import Home from '../Components/Home/Home';
 import Library from '../Components/Library/Library';
 import Challenge from '../Components/Challenge/Challenge';
 import Review from '../Components/Review/Review';
+import SingleReview from '../Components/SingleReview/SingleReview';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,7 +26,7 @@ function App() {
               <Switch>
                 <Route path='/home' component={Home} />
                 <Route path='/library' component={Library} />
-                <Route path='/library/:id' component={Review} />
+                <Route path='/bookReview/:id' component={SingleReview} />
                 <Route path='/challenge' component={Challenge} />
                 <Route path='/review' component={Review} />
                 <Redirect from="*" to="/home" />
