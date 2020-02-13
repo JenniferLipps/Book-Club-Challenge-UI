@@ -82,7 +82,7 @@ class Challenge extends React.Component {
                 <div>
                 <Form>
                     <h4>Create a New Challenge</h4>                    
-                    <Label For="title">New Challenge</Label>
+                    <Label htmlFor="title">New Challenge</Label>
                     <Input type="select" name="selectMulti" multiple>
                         { createUserMenuOptions }
                     </Input>               
