@@ -1,18 +1,16 @@
 import React from 'react';
-import userBooks from '../../Helpers/Data/UserBookData';
+//import userBooks from '../../Helpers/Data/UserBookData';
 
 class NewReview extends React.Component {
 
     addReviewtoDB = () => {};
 
     componentDidMount() {
-        const getBookId = this.props.match.params.id;
-        userBooks.getBookById(getBookId)
-            .then(book => console.error(book))
-            .catch(err => console.error('Cannot get book info', err));
+        
     };
 
     render() {
+        const reviewToSave = {...this.props.myNewReview}
         return (
             <div>
                 <h3>Write a New Review</h3>
@@ -24,7 +22,7 @@ class NewReview extends React.Component {
                         className="form-control"
                         id="review"
                         placeholder="Add some thoughts"
-                        // value={}
+                        //value={}
                         // onChange={}
                         />
                     </div>
