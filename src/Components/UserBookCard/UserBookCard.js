@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class UserBookCard extends React.Component {
     render () {
         const mySavedBook = {...this.props.mySavedBook};
-        const linkToReviews = `/bookReview/${mySavedBook.id}`;
+        const linkToReviews = `/bookReview/${mySavedBook.id}/${mySavedBook.goodReadsBookId}`;
         return (
             <div className="bookCard col-4" key={this.props.key}>
                 <div className="card">

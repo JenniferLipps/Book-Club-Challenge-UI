@@ -3,14 +3,14 @@ import React from 'react';
 class SingleReviewCard extends React.Component {   
 
     render() {
-        const myReview = {...this.props.myReview};
+        const otherReview = {...this.props.otherReview};
 
         return (
-            <div className="reviewCard col-4" key={this.props.key}>
+            <div className="reviewCard" key={this.props.key}>
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="review-title">{myReview.title}</h4>
-                        <div className="review-review">{myReview.review}</div>                      
+                        <h4 className="review-name">{otherReview.firstName} {otherReview.lastName}</h4>
+                        <div className="review-review">{otherReview.review}</div>                      
                     </div>
                 </div>
             </div>

@@ -26,7 +26,7 @@ function App() {
               <Switch>
                 <Route path='/home' component={Home} />
                 <Route path='/library' component={Library} />
-                <Route path='/bookReview/:id' component={SingleReview} />
+                <Route path='/bookReview/:id/:goodReadsBookId' component={SingleReview} />
                 <Route path='/challenge' component={Challenge} />
                 <Route path='/review' component={Review} />
                 <Redirect from="*" to="/home" />
