@@ -1,7 +1,18 @@
 import React from 'react';
-//import userBooks from '../../Helpers/Data/UserBookData';
+import userBooks from '../../Helpers/Data/UserBookData';
 
 class NewReview extends React.Component {
+    state = {
+        reviewToAdd: []
+    }
+
+    getBookToReview = () => {
+        const getGoodReadsId = this.props.match.params.goodReadsBookId;
+        userBooks.getBookById(getGoodReadsId).then(review => console.error(review))
+            .catch(err => console.error('Cannot get book by Id', err));
+    };
+
+    createNewReview = () => {};
 
     addReviewtoDB = () => {};
 
@@ -10,7 +21,7 @@ class NewReview extends React.Component {
     };
 
     render() {
-        const reviewToSave = {...this.props.myNewReview}
+        //const reviewToSave = {...this.props.myNewReview}
         return (
             <div>
                 <h3>Write a New Review</h3>

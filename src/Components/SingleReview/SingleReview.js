@@ -1,12 +1,20 @@
 import React from 'react';
 import reviewData from '../../Helpers/Data/BookReviewData';
 import SingleReviewCard from '../SingleReviewCard/SingleReviewCard';
-import NewReview from '../NewReview/NewReview';
+
+const defaultReview = {
+    review: '',
+    rating: 5,
+    bookId: '',
+    userId: '',
+    goodReadsBookId: ''
+};
 
 class SingleReview extends React.Component {
     state = {
         mySingleReview: {},
-        otherUserReviews: []
+        otherUserReviews: [],
+        newReview: defaultReview
     };
 
     getUserReview = () => {
@@ -22,6 +30,16 @@ class SingleReview extends React.Component {
             .then(otherReviews => {console.error(otherReviews);
                 this.setState({ otherUserReviews: otherReviews })})
             .catch(err => console.error('Unable to get reviews', err));
+    };
+
+    createNewReview = (e) => {
+        const bookId = this.props.match.params.id;
+        const userId = this.props.match.params.userId;
+        const goodReadsBookId = this.props.params.goodReadsBookId;
+        const saveNewReviewInfo = {...this.state.newReview}
+        reviewData.postNewBookReview(saveNewReviewInfo)
+            .then(() => this.props.history.push('/review'))
+            .catch(err => console.error('Unable to save Review.', err));
     };
 
     componentDidMount() {
@@ -41,9 +59,22 @@ class SingleReview extends React.Component {
                     </div>;
         }
         if (mySingleReview === '' || mySingleReview === null) {
-            renderReview = <div>
-                <NewReview />
-            </div>
+            renderReview = <div>                
+                <h3>Write a New Review</h3>
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="title">Review</label>
+                        <input
+                        type="text"
+                        className="form-control"
+                        id="review"
+                        placeholder="Add some thoughts"
+                        //value={}
+                        // onChange={}
+                        />
+                    </div>
+                </form>
+                </div>
         };
 
         const displayOtherUserReviews = this.state.otherUserReviews.map((review) => 
