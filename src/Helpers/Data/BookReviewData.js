@@ -22,8 +22,11 @@ const getAllReviewsForBook = (goodReadsBookId) => new Promise((resolve, reject) 
         .catch((err) => reject(err));
 });
 
+const postNewBookReview = newReview => axios.post(`${baseUrl}`, newReview);
+
 export default {
     getSingleReviewByUser,
     getAllReviewsByUser,
-    getAllReviewsForBook
+    getAllReviewsForBook,
+    postNewBookReview
 };
