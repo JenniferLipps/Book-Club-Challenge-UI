@@ -1,6 +1,7 @@
 import React from 'react';
 import reviewData from '../../Helpers/Data/BookReviewData';
 import SingleReviewCard from '../SingleReviewCard/SingleReviewCard';
+import './SingleReview.scss';
 
 const defaultReview = {
     review: '',
@@ -59,8 +60,8 @@ class SingleReview extends React.Component {
         var renderReview;
         if (mySingleReview !== null || mySingleReview !== '') {
             renderReview = <div>
-                    <h4>My Review for This Book</h4>
-                    <div>{mySingleReview.title}</div>
+                    <h4>My Review of {mySingleReview.title}</h4>
+                    {/* <div>{mySingleReview.title}</div> */}
                     <div>{mySingleReview.review}</div>
                     </div>;
         }
@@ -93,7 +94,7 @@ class SingleReview extends React.Component {
             <div>
                 <div>{ renderReview }</div>
                 <div>
-                    <h4>Other Users' Reviews</h4>
+                    <h4>What other readers are saying:</h4>
                     <div className="other-reviews d-flex flex-wrap">{ displayOtherUserReviews }</div>
                 </div>
             </div>

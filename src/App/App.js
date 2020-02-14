@@ -10,7 +10,6 @@ import MyNavbar from '../Components/MyNavbar/MyNavbar';
 import Home from '../Components/Home/Home';
 import Library from '../Components/Library/Library';
 import Challenge from '../Components/Challenge/Challenge';
-import NewReview from '../Components/NewReview/NewReview';
 import Review from '../Components/Review/Review';
 import SingleReview from '../Components/SingleReview/SingleReview';
 
@@ -27,8 +26,7 @@ function App() {
               <Switch>
                 <Route path='/home' component={Home} />
                 <Route path='/library' component={Library} />
-                <Route path='/bookReview/:id/:goodReadsBookId/:userId' component={SingleReview} />
-                <Route path='/newBook/:id' component={NewReview} />
+                <Route path='/bookReview/:id/:goodReadsBookId/:userId' component={SingleReview} />                
                 <Route path='/challenge' component={Challenge} />
                 <Route path='/review' component={Review} />
                 <Redirect from="*" to="/home" />
