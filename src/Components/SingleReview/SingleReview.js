@@ -14,7 +14,8 @@ class SingleReview extends React.Component {
     state = {
         mySingleReview: {},
         otherUserReviews: [],
-        newReview: defaultReview
+        newReview: defaultReview,
+        reviewToAdd: ''
     };
 
     getUserReview = () => {
@@ -32,11 +33,16 @@ class SingleReview extends React.Component {
             .catch(err => console.error('Unable to get reviews', err));
     };
 
+    handleInputChange = (e) => {
+        this.setState({ reviewToAdd: e.target.value })
+    };
+
     createNewReview = (e) => {
-        const bookId = this.props.match.params.id;
-        const userId = this.props.match.params.userId;
-        const goodReadsBookId = this.props.params.goodReadsBookId;
         const saveNewReviewInfo = {...this.state.newReview}
+        saveNewReviewInfo.review = this.state.reviewToAdd
+        saveNewReviewInfo.bookId = this.props.match.params.id
+        saveNewReviewInfo.userId = this.props.match.params.userId
+        saveNewReviewInfo.goodReadsBookId= this.props.match.params.goodReadsBookId
         reviewData.postNewBookReview(saveNewReviewInfo)
             .then(() => this.props.history.push('/review'))
             .catch(err => console.error('Unable to save Review.', err));
@@ -61,19 +67,20 @@ class SingleReview extends React.Component {
         if (mySingleReview === '' || mySingleReview === null) {
             renderReview = <div>                
                 <h3>Write a New Review</h3>
-                <form>
-                    <div className="form-group">
+                {/* <form>               
+                    <div className="form-group"> */}
                         <label htmlFor="title">Review</label>
                         <input
                         type="text"
-                        className="form-control"
-                        id="review"
+                        // className="form-control"
+                        // id="review"
                         placeholder="Add some thoughts"
-                        //value={}
-                        // onChange={}
+                        value={this.state.reviewToAdd}
+                        onChange={this.handleInputChange}
                         />
-                    </div>
-                </form>
+                        <button onClick={this.createNewReview}>Add Review</button>                    
+                    {/* </div>
+                </form> */}
                 </div>
         };
 
