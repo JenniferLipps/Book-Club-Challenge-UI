@@ -1,5 +1,11 @@
+@import '../../Styles/colors';
+
 .challenges {
     display: flex;
     flex-direction: column;
     flex-flow: row wrap;
+}
+
+.challengeCards {
+    background-color: $background;
 }

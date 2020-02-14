@@ -6,13 +6,11 @@ class SingleReviewCard extends React.Component {
         const otherReview = {...this.props.otherReview};
 
         return (
-            <div className="reviewCard" key={this.props.key}>
-                <div className="card">
+            <div className="card reviewCard" key={this.props.key}>
                     <div className="card-body">
                         <h4 className="review-name">{otherReview.firstName} {otherReview.lastName}</h4>
                         <div className="review-review">{otherReview.review}</div>                      
                     </div>
-                </div>
             </div>
         );
     }

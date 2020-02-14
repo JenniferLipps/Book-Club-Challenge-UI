@@ -75,13 +75,13 @@ class Challenge extends React.Component {
 
         return (
             <div className="challenges">
-                <div><h4>My Current Challenges</h4>
+                <div><h4 className="challengeCards">My Current Challenges</h4>
                 { displayUsersChallenges }
                 </div>
 
                 <div>
                 <Form>
-                    <h4>Create a New Challenge</h4>                    
+                    <h4 className="challengeCards">Create a New Challenge</h4>                    
                     <Label htmlFor="title">New Challenge</Label>
                     <Input type="select" name="selectMulti" multiple>
                         { createUserMenuOptions }
